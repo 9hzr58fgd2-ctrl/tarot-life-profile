@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你的塔羅靈數檔案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F8F4EE;--paper:#FFFDF9;--ink:#2D2824;--muted:#877C73;--line:#E7DDD2;--rose:#C99991;--rose-deep:#9E6E68;--rose-soft:#F2E4E1;--blue:#8CA2B0;--blue-deep:#6D8290;--blue-soft:#E9F0F3;--gold:#B99A62;--gold-soft:#F2E8D5;--shadow:0 18px 55px rgba(49,39,33,.075)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 8% 0%,rgba(242,228,225,.74),transparent 26%),radial-gradient(circle at 93% 10%,rgba(233,240,243,.68),transparent 25%),var(--bg);font-family:'Noto Sans TC',sans-serif}button{font:inherit;cursor:pointer}.wrap{max-width:980px;margin:0 auto;padding:0 18px 90px}.eyebrow{color:var(--rose-deep);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.section{padding:54px 0;border-top:1px solid var(--line)}.section h2{font-family:'Noto Serif TC';font-size:clamp(28px,5vw,42px);line-height:1.35;margin:8px 0 10px}.section-sub{font-size:13px;color:var(--muted);line-height:1.9;max-width:720px}
+.hero{min-height:88vh;display:grid;align-content:center;padding:58px 0 56px}
+.archive-cover{position:relative;overflow:hidden;border-radius:36px;background:linear-gradient(150deg,rgba(255,253,249,.98),rgba(245,235,232,.88));border:1px solid rgba(255,255,255,.98);box-shadow:0 26px 66px rgba(49,39,33,.075);padding:28px}
+.archive-cover:before{content:"";position:absolute;left:-120px;bottom:-150px;width:320px;height:320px;border:1px solid rgba(185,154,98,.13);border-radius:50%}
+.archive-cover:after{content:"";position:absolute;right:-72px;top:-92px;width:240px;height:240px;border:1px solid rgba(140,162,176,.14);border-radius:50%}
+.archive-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding-bottom:18px;border-bottom:1px solid rgba(185,154,98,.18)}
+.archive-kicker{font-size:9px;letter-spacing:.24em;color:#9A8D84;font-weight:900;text-transform:uppercase;text-align:center}
+.archive-code{display:none}
+.archive-main{position:relative;z-index:1;padding:54px 24px 38px;text-align:center}
+.archive-index{font-family:'Noto Serif TC';font-size:11px;color:var(--rose-deep);letter-spacing:.16em;margin-bottom:18px;text-transform:uppercase;text-align:center}
+.hero h1{font-family:'Noto Serif TC';font-size:clamp(40px,6.7vw,62px);margin:0;line-height:1.14;max-width:none;letter-spacing:.01em;text-align:center}
+.owner-slip{display:flex;justify-content:center;align-items:center;gap:52px;max-width:560px;margin:32px auto 0;padding:0;border:none;text-align:center}
+.owner-field .label{font-size:9px;letter-spacing:.16em;color:var(--muted);font-weight:900;text-align:center}
+.owner-field .value{font-family:'Noto Serif TC';font-size:18px;margin-top:7px;text-align:center;min-width:120px}
+.hero-copy{max-width:640px;margin:42px auto 0;font-family:'Noto Serif TC';font-size:18px;line-height:2;color:#514841;text-align:center}
+.hero-copy .leadline{font-size:22px;line-height:1.95;color:#3E3732}
+.hero-copy .soft{display:block;margin-top:20px;color:#756B63;font-size:15px;line-height:2}
+.hero-action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin-top:34px}
+.cta{margin:0;border:none;border-radius:999px;padding:14px 30px;background:#3A332E;color:#fff;font-size:13px;font-weight:900;box-shadow:0 9px 22px rgba(58,51,46,.12);min-width:240px}
+.hero-hint{font-size:10px;color:var(--muted);letter-spacing:.06em}
+.archive-stamp{display:none}
+.source-btn{margin-top:14px;border:none;background:none;padding:0;color:var(--blue-deep);font-size:10px;font-weight:900;letter-spacing:.04em}
+.source-box{display:none;margin-top:11px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.62);color:#6A625C;font-size:12px;line-height:1.9;border:1px solid rgba(255,255,255,.78)}
+.source-box.show{display:block}
+.six-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.card{background:rgba(255,253,249,.95);border:1px solid rgba(255,255,255,.95);border-radius:24px;box-shadow:var(--shadow)}.tarot{position:relative;padding:20px;min-height:200px;overflow:hidden}.tarot:before{content:"";position:absolute;left:18px;right:18px;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.65}.tarot .seq{font-size:10px;color:var(--muted);letter-spacing:.16em;font-weight:900}.tarot .num{width:46px;height:46px;border:1px solid #4B433D;border-radius:50%;display:grid;place-items:center;font-family:'Noto Serif TC';font-size:19px;margin:18px 0 14px}.tarot h3{font-family:'Noto Serif TC';font-size:22px;margin:0 0 7px}.tarot .short{font-size:12px;color:#5E554E;line-height:1.75}.tarot button{margin-top:14px;border:none;background:none;padding:0;color:var(--rose-deep);font-size:11px;font-weight:800}.tarot-detail{max-height:0;overflow:hidden;transition:max-height .35s ease,opacity .35s ease;opacity:0}.tarot.open .tarot-detail{max-height:260px;opacity:1}.tarot-detail p{font-size:12px;color:var(--muted);line-height:1.9;margin:14px 0 0}.keywords{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.keyword{background:var(--rose-soft);color:var(--rose-deep);padding:5px 9px;border-radius:999px;font-size:10px;font-weight:800}.close-copy{margin-top:22px;padding:18px 20px;border-radius:20px;background:rgba(255,253,249,.7);font-family:'Noto Serif TC';font-size:14px;line-height:1.9;color:#594F48}
+.tarot .repeat-badge{position:absolute;top:16px;right:16px;background:var(--rose-soft);color:var(--rose-deep);font-size:9px;font-weight:800;padding:4px 8px;border-radius:999px;white-space:nowrap;z-index:1}
+.hidden-zone{margin-top:24px;border-radius:30px;padding:28px;background:linear-gradient(145deg,rgba(233,240,243,.94),rgba(242,228,225,.78));border:1px solid rgba(255,255,255,.9)}.hidden-cards{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.hidden-pill{padding:11px 15px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(126,149,165,.16);font-family:'Noto Serif TC';font-size:15px}.hidden-reading{max-width:760px;font-size:13px;line-height:2;color:#5B5F63}.link-btn{margin-top:14px;border:none;background:none;padding:0;color:var(--blue-deep);font-weight:900;font-size:12px}.hidden-detail{display:none;margin-top:18px;gap:10px}.hidden-detail.show{display:grid;grid-template-columns:repeat(3,1fr)}.hidden-mini{padding:16px;border-radius:18px;background:rgba(255,255,255,.64)}.hidden-mini strong{font-family:'Noto Serif TC';font-size:16px}.hidden-mini p{font-size:12px;line-height:1.9;color:#657078}
+.year-hero{margin-top:24px;border-radius:32px;padding:30px;background:linear-gradient(145deg,rgba(255,253,249,.94),rgba(242,232,213,.78));box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.9);position:relative;overflow:hidden}.year-hero:after{content:"";position:absolute;right:-42px;top:-42px;width:160px;height:160px;border:1px solid rgba(185,154,98,.28);border-radius:50%}.year-number{font-family:'Noto Serif TC';font-size:68px;line-height:1;color:#6F6047}.year-card-name{font-family:'Noto Serif TC';font-size:27px;margin-top:16px}.year-line{font-family:'Noto Serif TC';font-size:18px;line-height:1.7;margin-top:8px;max-width:680px}.year-key{font-size:11px;color:var(--gold);font-weight:900;letter-spacing:.12em;margin-top:14px}.year-copy{font-size:13px;line-height:1.95;color:#655D54;max-width:720px;margin-top:14px}
+.journey{position:relative;margin-top:30px;padding:26px 8px 14px}.track{position:absolute;left:8%;right:8%;top:82px;height:1px;background:linear-gradient(90deg,transparent,rgba(185,154,98,.5),transparent)}.years{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;position:relative}.year-item{text-align:center;opacity:.58;transform:scale(.88)}.year-item.near{opacity:.78;transform:scale(.94)}.year-item.current{opacity:1;transform:scale(1.08)}.year-dot{width:10px;height:10px;border-radius:50%;background:#D9C8A8;margin:8px auto 14px;border:2px solid var(--bg)}.year-item.current .year-dot{width:14px;height:14px;background:var(--gold)}.year-item .yr{font-size:11px;color:var(--muted);font-weight:900;letter-spacing:.08em}.year-item .name{font-family:'Noto Serif TC';font-size:15px;margin-top:7px}.year-item .mini{font-size:10px;line-height:1.55;color:var(--muted);margin-top:5px}.segment{margin-top:20px;padding:22px;border-radius:24px;background:var(--paper);box-shadow:var(--shadow)}.segment h3{font-family:'Noto Serif TC';font-size:22px;margin:0 0 9px}.segment p{font-size:13px;line-height:2;color:#5D554E;margin:0}.lifetime{display:none;margin-top:18px}.lifetime.show{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.life-cell{border:1px solid var(--line);border-radius:16px;padding:12px;background:rgba(255,253,249,.72)}.life-cell .yr{font-size:10px;color:var(--muted)}.life-cell .nm{font-family:'Noto Serif TC';font-size:14px;margin-top:5px}
+.integrated{margin-top:24px;background:linear-gradient(155deg,#F2E8E4,#EDF1F2);color:var(--ink);border-radius:30px;padding:30px;border:1px solid rgba(255,255,255,.95);box-shadow:var(--shadow)}.layer{padding:22px 0;border-bottom:1px solid rgba(99,82,73,.12)}.layer:first-child{padding-top:0}.layer:last-child{border-bottom:none;padding-bottom:0}.layer .lab{font-size:10px;color:var(--rose-deep);letter-spacing:.15em;font-weight:900}.layer h3{font-family:'Noto Serif TC';font-size:21px;margin:7px 0 8px}.layer p{font-size:13px;line-height:2;color:#5B524B;margin:0}.integrated-final{margin-top:22px;padding-top:20px;border-top:1px solid rgba(99,82,73,.12);font-family:'Noto Serif TC';font-size:16px;line-height:2;color:#3F3833}
+.note-final{min-height:42vh;display:grid;align-content:center;text-align:center;padding:74px 0}.note-final h2{font-family:'Noto Serif TC';font-size:32px;margin-bottom:20px}.note-final p{font-family:'Noto Serif TC';font-size:18px;line-height:2;color:#5E554E}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}.action{border:none;border-radius:999px;padding:12px 17px;font-size:12px;font-weight:900}.action.primary{background:var(--ink);color:#fff}.action.secondary{background:var(--rose-soft);color:var(--rose-deep)}.action.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}.footer-quote{text-align:center;font-family:'Noto Serif TC';font-size:13px;line-height:1.9;color:var(--muted);padding:26px 0 4px}
+
+.brand-footer{
+  margin-top:18px;
+  padding:42px 12px 18px;
+  text-align:center;
+  border-top:1px solid var(--line);
+}
+.brand-footer .brand-line{
+  font-size:12px;
+  color:#81776F;
+  line-height:1.8;
+}
+.brand-footer .brand-line strong{
+  font-family:'Noto Serif TC';
+  font-weight:700;
+  color:#6F655D;
+}
+.brand-footer .brand-tagline{
+  margin-top:4px;
+  font-size:11px;
+  line-height:1.85;
+  color:#9A8F86;
+}
+.brand-footer .creator{
+  margin-top:22px;
+  font-size:11px;
+  color:#9A8F86;
+}
+.brand-footer .creator a{
+  color:var(--rose-deep);
+  text-decoration:none;
+  border-bottom:1px solid rgba(158,110,104,.28);
+  padding-bottom:1px;
+}
+.brand-footer .creator a:active{
+  opacity:.72;
+}
+
+
+.tarot-native{
+  margin-top:14px;
+}
+.tarot-native summary{
+  list-style:none;
+  cursor:pointer;
+  color:var(--rose-deep);
+  font-size:11px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.tarot-native summary::-webkit-details-marker{display:none}
+.tarot-native summary::after{content:'›';transition:transform .2s ease}
+.tarot-native[open] summary::after{transform:rotate(90deg)}
+.tarot-native[open] summary .open-text{display:none}
+.tarot-native summary .close-text{display:none}
+.tarot-native[open] summary .close-text{display:inline}
+.tarot-native .native-detail{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid rgba(231,221,210,.75);
+}
+.tarot-native .native-detail p{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.9;
+  margin:0;
+}
+
+.detail-note{margin-top:10px;font-size:12px;line-height:1.85;color:#7B716A}.source-box strong{display:block;margin-bottom:4px;color:#544A44;font-size:12px}.source-box span{display:block}.hidden-mini .mini-key{margin-top:10px;font-size:11px;color:#8B7A73}
+
+.native-disclosure{margin-top:14px}
+.native-disclosure summary{
+  list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;
+  color:var(--blue-deep);font-size:12px;font-weight:900;
+}
+.native-disclosure summary::-webkit-details-marker{display:none}
+.native-disclosure summary::after{content:'›';transition:transform .2s ease}
+.native-disclosure[open] summary::after{transform:rotate(90deg)}
+.native-disclosure[open] summary .open-label{display:none}
+.native-disclosure summary .close-label{display:none}
+.native-disclosure[open] summary .close-label{display:inline}
+
+.hidden-native-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px
+}
+.lifetime-native-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:18px
+}
+.source-native{
+  margin-top:14px
+}
+.source-native summary{
+  list-style:none;cursor:pointer;color:var(--blue-deep);
+  font-size:10px;font-weight:900;letter-spacing:.04em
+}
+.source-native summary::-webkit-details-marker{display:none}
+.source-native summary::after{content:' ›'}
+.source-native[open] summary::after{content:' ↑'}
+.source-native .source-box{
+  display:block;
+}
+
+.lifetime-intro{
+  margin-top:16px;
+  padding:16px 18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(231,221,210,.75);
+  color:#6A625C;
+  font-size:12px;
+  line-height:1.9;
+}
+.lifetime-intro strong{
+  display:block;
+  font-family:'Noto Serif TC';
+  color:#4F4741;
+  font-size:15px;
+  margin-bottom:6px;
+}
+.life-cell{
+  min-height:150px;
+}
+.life-cell .theme{
+  margin-top:8px;
+  font-size:10px;
+  color:var(--rose-deep);
+  font-weight:900;
+  letter-spacing:.05em;
+}
+.life-cell .interaction{
+  margin-top:7px;
+  font-size:10px;
+  line-height:1.7;
+  color:#7A7069;
+}
+.life-cell.current-life{
+  background:linear-gradient(145deg,#FFF8F5,#F1E7E3);
+  border-color:rgba(201,143,134,.35);
+  transform:translateY(-2px);
+}
+.life-cell.current-life .yr{
+  color:var(--rose-deep);
+  font-weight:900;
+}
+
+@media(max-width:760px){
+  .hidden-native-grid{grid-template-columns:1fr}
+  .lifetime-native-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:760px){.wrap{padding:0 14px 72px}.hero{min-height:auto;padding:34px 0 50px}.archive-cover{border-radius:30px;padding:18px}.archive-main{padding:42px 14px 30px}.hero h1{font-size:34px;line-height:1.16}.owner-slip{flex-direction:column;gap:16px;align-items:center}.hero-copy{margin-top:34px}.hero-copy .leadline{font-size:20px}.archive-stamp{right:16px;bottom:18px;width:56px;height:56px}.six-grid{grid-template-columns:1fr 1fr}.hidden-detail.show{grid-template-columns:1fr}.years{gap:2px}.year-item .name{font-size:13px}.year-item .mini{font-size:9px}.track{top:80px}.lifetime.show{grid-template-columns:repeat(2,1fr)}}@media(max-width:460px){.six-grid{grid-template-columns:1fr}.year-number{font-size:58px}.year-item{transform:scale(.82)}.year-item.near{transform:scale(.88)}.year-item.current{transform:scale(1)}}
+</style>
+<!-- FINAL RESULT PAGE · NATIVE EXPAND -->
+</head>
+<body>
+<div class="wrap">
+<section class="hero" id="top">
+  <div class="archive-cover">
+    <div class="archive-top">
+      <div class="archive-kicker">Tarot Numerology Archive</div>
+      
+    </div>
+
+    <div class="archive-main">
+      <div class="archive-index">Personal Tarot Numerology</div>
+      <h1>你的塔羅靈數檔案</h1>
+
+      <div class="owner-slip">
+        <div class="owner-field">
+          <div class="label">檔案持有人</div>
+          <div class="value" id="ownerNameValue">—</div>
+        </div>
+        <div class="owner-field">
+          <div class="label">出生日期</div>
+          <div class="value" id="ownerBirthValue">—</div>
+        </div>
+      </div>
+
+      <div style="width:92px;height:1px;background:rgba(185,154,98,.24);margin:32px auto 0;"></div><div class="hero-copy">
+        <div class="leadline">你出生的那一天，<br>有些牌就已經安靜地寫進你的生命結構裡。</div>
+        <span class="soft">它們不替你決定人生，只是讓你更看得懂，自己一路走來的方式。</span>
+      </div>
+
+      <div class="hero-action">
+        <button class="cta" onclick="document.querySelector('#birthCards').scrollIntoView()">展開我的命卡</button>
+        <span class="hero-hint">開始閱讀這份檔案 ↓</span>
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
+<section class="section" id="birthCards">
+  <div class="eyebrow">01 · Birth Cards</div><h2>你的六張本命牌</h2>
+  <div class="section-sub">這六張牌共同構成你的生命輪廓。它們依照原始順序展開，不替每一個位置預設固定的人生角色。</div>
+  <div class="section-sub" id="birthSummaryLine" style="margin-top:8px"></div>
+  <div class="six-grid" id="birthCardsGrid"></div>
+  <div class="close-copy">每張牌都代表你的一種生命模式，相互映照之下，才慢慢看見你與人生互動的方式。</div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">02 · Hidden Cards</div><h2>你的隱藏牌</h2>
+  <div class="section-sub">那些不一定第一眼被看見，卻深深影響你的內在模式。</div>
+  <div class="hidden-zone">
+    <div class="hidden-reading" id="hiddenIntroLine">這些模式不一定會一直出現在日常裡，卻可能在特定的環境、關係與生命階段中，被慢慢勾出來。</div>
+    <div class="hidden-cards" id="hiddenCardsPills"></div>
+    <div class="hidden-native-grid" id="hiddenCardsGrid" style="display:grid"></div>
+<div class="close-copy" style="margin-top:22px;background:rgba(255,255,255,.45)">有些模式不一定容易被察覺，卻常常在你最重要的選擇裡悄悄出現。</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">03 · Your Timing</div><h2>此刻的流動</h2>
+  <div class="year-hero">
+    <div class="year-line" style="font-family:'Noto Serif TC';font-size:22px;line-height:1.6">你的時間，也有自己的節奏</div>
+    <div class="year-copy" style="margin-top:16px">流年不是一張牌的單獨預測，而是當年度模式與你的本命結構彼此相遇後，形成的階段性提醒。</div>
+    <div class="year-key" style="margin-top:16px;color:var(--muted)">單年流動與五年旅程將於完整解析中展開。</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="eyebrow">05 · Integrated Reading</div>
+  <h2>你的牌，如何成為現在的你</h2>
+  <div class="section-sub" style="margin-top:2px">
+    <div style="font-family:'Noto Serif TC';font-size:15px;color:#6C6058;margin-bottom:10px">當所有線索開始相互映照</div>
+    單張牌說的是一種傾向；放在一起，才會看見這些模式如何彼此牽動，逐漸形成你的感受、選擇與回應。
+  </div>
+
+  <div class="integrated">
+    <div class="layer" style="border-bottom:none;padding-bottom:0">
+      <h3>單張牌讓你看見一種模式，全盤才會看見它們如何彼此作用。</h3>
+      <p>完整解析會進一步整理本命牌、隱藏牌與重複力量如何相互映照，並轉化成更貼近你此刻狀態的實際提醒。</p>
+    </div>
+    <div class="integrated-final" style="font-size:13px;color:var(--muted);margin-top:14px;padding-top:14px">完整個人解析功能準備中。</div>
+  </div>
+</section>
+
+<section class="note-final">
+  <div>
+    <div class="eyebrow">A note for now</div><h2>給此刻的你</h2>
+    <p>你不需要一次看懂全部。<br>先看見自己正在經歷什麼，就已經足夠。</p>
+    <div class="actions">
+      <button class="action primary" onclick="alert('概念版：之後可接成圖片 / PDF 保存')">保存我的命卡</button>
+      <button class="action secondary" onclick="alert('概念版：之後可串分享功能')">分享這份命卡</button>
+      <button class="action ghost" onclick="location.href='02_建立命卡頁.html'">為另一個人建立命卡</button>
+    </div>
+    <button class="link-btn" style="margin-top:18px" onclick="alert('概念版：之後連到完整個人解析')">查看完整個人解析 ›</button>
+    <div class="hero-hint" style="margin-top:8px">完整版內容｜單人全盤・流年整合・交互作用・實際建議</div>
+  </div>
+</section>
+<div class="footer-quote">你不是答案本身，你是那個一路看見、選擇、前行的人。</div>
+
+<div class="brand-footer">
+  <div class="brand-line"><strong>靈魂配方使用手冊</strong> · Soul Recipe Manual</div>
+  <div class="brand-tagline">看懂自己，不是為了被定義，而是為了更自由地使用自己。</div>
+  <div class="creator">✦ 菲菲　<a href="https://www.instagram.com/babybabyfeifei/" target="_blank" rel="noopener noreferrer">@babybabyfeifei</a></div>
+</div>
+</div>
+
+<script>
+/* ===== 菲菲核心牌義：逐字取自 soul-recipe-rules.json 的 cards（唯一事實來源）=====
+   prototype 階段前端以 file:// 開啟，無法用 fetch 讀取本機 JSON（瀏覽器 CORS 限制），
+   故將 cards 內容原樣內嵌於此，內容與 soul-recipe-rules.json 完全一致，未新增/修改/刪減任何欄位或文字。
+   未來串接後端／建置流程時，應改為直接讀取 soul-recipe-rules.json，不應維持雙重維護。 */
+const CARDS = {"1": {"coreMeaning": "理解、轉化、從無到有。不一定代表傳統學業型的聰明，而是很懂得從一個念頭、模糊概念或靈感裡抓到方法，再把它做成現實。通常理解速度快，也常有較強的靈性感知或抽象理解能力。", "displayCopy": {"closingNote": "這張牌常和創作、企劃、表達、教學，或任何從零開始的事有關。", "keywords": ["創造", "理解", "轉化"], "readingParagraphs": ["你的天賦不只是聰明，而是很懂得怎麼從一個模糊的念頭裡抓到方法，再把它逐步變成能夠實現的東西。這是一種從無到有的能力。", "很多人有靈感，但不一定能把靈感落地；你則比較像能把抽象的直覺翻譯成具體做法的人。當你真的相信自己看見的東西，並願意開始動手，它就很容易變成一個可被使用、被看見、被交換價值的成果。"], "teaser": "把尚未存在的東西，慢慢帶進現實。"}, "imbalanceExpression": "過度相信自己的理解速度，可能出現「聰明反被聰明誤」，想得太快、方法太多，反而沒有真正落地。", "matureExpression": "能把抽象概念轉成具體方法、作品、計畫或價值。很多人還在想「這可不可能」，魔術師已經開始找「那要怎麼做」。", "name": "魔術師", "number": 1, "practicalNotes": "適合創造、企劃、表達、教學、創業，或任何需要從 0 到 1 的事情。"}, "10": {"coreMeaning": "外在結果放大、順勢、資源與機會。在外在世界裡，同樣程度的努力，常比較容易得到更好的結果；事情出現問題時，也比較容易有新的機會把局面帶回來。", "displayCopy": {"closingNote": "看見生命已經給你的，並繼續為新的可能留一扇門。", "keywords": ["運氣", "放大", "結果"], "readingParagraphs": ["在外在結果上，你常比別人更容易得到好的回應。當你願意學習、累積與行動，成果容易被放大，也比較容易在關鍵時刻遇到剛好的機會、貴人或轉折。", "不過，當機會與獲得來得比別人自然，久了也可能習慣把它們視為理所當然。你的目光容易繼續望向還缺少什麼、哪裡可以更好，甚至在已經擁有不少時，仍然覺得自己得到得不夠。感恩不是要你停止追求，而是讓你真正看見生命已經如何回應你，也讓那些來到身邊的美好，不會因為習以為常而被忽略。", "當人生正在轉動時，也不要因為一時順利，就停在舒服的位置太久。你其實很適合持續打開新的可能，讓已經得到的資源、經驗與機會繼續流動，帶你走向下一個階段。當你能一邊珍惜已經擁有的，一邊繼續向前，好的循環才會一輪接一輪地往前滾。"], "teaser": "當你願意投入，世界往往回應得比想像更多。"}, "imbalanceExpression": "因為很多事情相對順利，而停在舒服的位置太久，產生懶散或低估準備的重要性。", "matureExpression": "願意累積、行動、持續打開機會，讓好的循環產生複利。", "name": "命運之輪", "number": 10, "practicalNotes": "這比較偏「外在／物質世界的 buff」，不代表內在情緒一定沒有痛苦。也不代表沒有 10 的人就不能創業或成功。"}, "11": {"coreMeaning": "分析、衡量、敏感於差異與不一致。很自然會反覆衡量事情是否合理、值不值得、前後是否一致，因此容易想得很細。", "displayCopy": {"closingNote": "想得仔細是你的能力；知道何時已經足夠，則會讓這份能力真正幫助你。", "keywords": ["分析", "衡量", "敏感"], "readingParagraphs": ["你很自然會去衡量一件事是否合理、值不值得，以及前後是否一致。別人可能只看到事情的大概，你卻常能察覺其中細微的差異、矛盾與風險。這份敏感不只是想得多，也是一種能把問題看得更完整的分析能力。", "當這份力量成熟時，你會用細膩的思考幫助自己做出清楚的判斷，也能看見別人容易忽略的地方。但如果每一個可能都被反覆放上心裡衡量，你也可能一直停留在思考裡，遲遲無法向前。你不需要停止分析，只是要讓思考最後能帶你走向選擇，而不是把你留在原地。"], "teaser": "看清每一個選擇，也就看見它將你帶往哪裡。"}, "imbalanceExpression": "容易過度思考、內耗、反覆衡量，讓自己困在腦內。", "matureExpression": "能把敏感轉成分析能力，看到其他人忽略的細節、矛盾與風險。", "name": "正義", "number": 11, "practicalNotes": "不要只把 11 解成抽象的「公平正義」。在這套系統裡，它和思考、衡量、敏感與內耗的關係非常重要。"}, "12": {"coreMeaning": "犧牲、奉獻、責任，以及願意燃燒自己去完成承諾。對正式承諾與責任通常看得很重。一旦認定某個人、家庭、關係或目標是自己的責任，即使自己手上的資源已經不多，也可能想盡辦法把對方的需要補滿。", "displayCopy": {"closingNote": "真正能走得長久的付出，也應該為你留下一個位置。", "keywords": ["承擔", "奉獻", "界線"], "readingParagraphs": ["你對承諾與責任看得很重。一旦把某個人、家庭、關係或目標認定為自己的責任，即使對方需要的已經超出自己原本能夠輕鬆承擔的範圍，你也可能繼續想辦法補足，不願意讓自己在重要的人事物面前先退開。你的付出不只是習慣照顧，而是一種願意暫時放下個人得失，也想完成承諾的深刻力量。", "當這份力量成熟時，你能為真正重要的人事物承擔，也不會在困難來臨時輕易離開。但如果愛、責任與犧牲被綁在一起，你也可能在已經疲憊的時候，仍然要求自己繼續付出，最後只剩下委屈與說不出口的壓力。你要練習的不是少愛一點，而是看見自己的界線，讓付出不再以耗盡自己為前提。"], "teaser": "你可以繼續愛人，只是不必再用遺忘自己作為代價。"}, "imbalanceExpression": "容易把愛、責任與犧牲綁在一起，長期忽略自己的需求。可能不是有餘力才給，而是在自己已經很疲憊時，仍然要求自己繼續付出，最後形成委屈、耗損或無法說出口的壓力。", "matureExpression": "願意承擔，也有能力為真正重要的人事物付出。它的力量不只是忍耐，而是能在必要時放下眼前的個人得失，完成自己真正在意的承諾。", "name": "倒吊人", "number": 12, "practicalNotes": "吊人的重點不是單純等待或卡住，而是「我願意為了什麼付出，以及我付出的界線在哪裡」。與皇后不同，皇后通常是在自己有能力的範圍內照顧；吊人則可能連自己不夠的部分，也想設法拿出來給。"}, "13": {"coreMeaning": "衝動、結束、重生，以及快速更新自己。容易先做再說，當內在已經決定某件事情結束時，行動可能非常快。即使過程中曾經失敗、繞路或推翻原本的選擇，也常能從經驗裡迅速更新版本。", "displayCopy": {"closingNote": "你不是又回到了原點；你只是帶著上一次學會的事，重新走得更好。", "keywords": ["決斷", "更新", "重生"], "readingParagraphs": ["你身上有一股很快就會把感受化為行動的力量。當一個念頭或情緒升起時，你可能很快做出決定、說出心裡的話，或直接改變原本的方向。這讓你在需要果斷的時候，比別人更有勇氣採取行動；但在情緒強烈時，也可能還沒完全看清發生了什麼，行動就已經先一步發生。", "因此，你的人生可能比別人經歷更多次推翻與重來。有時你會忍不住懷疑，為什麼自己又搞砸了、又得從頭開始。但這不一定只是一件壞事，因為你真正特殊的能力，就是能很快從結果裡看見問題、記住教訓，再用新的方式重新開始。你看似回到了原點，其實每一次都已經帶著上一次累積的理解，變得更清楚，也做得比從前更好。", "當這份力量成熟時，你依然可以果斷，只是不必讓每一個當下的衝動立刻成為無法挽回的決定。多給自己一點時間，看清現在想結束的，究竟是已經不再適合的事，還是只是一個暫時難以承受的感受。真正應該結束的，不會因為你多看一眼就錯過；反而會讓你的下一次開始，不再只是逃離，而是真正的更新。"], "teaser": "有些結束，是生命正在替新的你騰出位置。"}, "imbalanceExpression": "容易在情緒或衝動下做出太快的決定，還沒有看清全貌就切斷、離開或重新開始。也可能反覆經歷「很快投入、很快推翻」，讓生活出現不必要的震盪。", "matureExpression": "有勇氣結束不再適合的階段，不會因為已經投入很多，就永遠困在原地。能把失敗與結束轉化成經驗，重新開始時通常比上一個版本更清楚。", "name": "死亡", "number": 13, "practicalNotes": "死神不是單純的失去，而是「結束之後能不能更新」。它的優勢是跌倒後修正得快；需要注意的則是，不要把所有的不舒服都立刻判定為必須結束。"}, "14": {"coreMeaning": "口才、表達、說服，以及透過語言建立連結。很會說、很會表達，也能根據不同對象調整傳遞方式。常有能力把自己的想法說得讓人理解、接受，甚至願意跟著行動。", "displayCopy": {"closingNote": "你的話能點石成金；越忠於真實，這份力量就越有價值。", "keywords": ["溝通", "轉化", "連結"], "readingParagraphs": ["你很懂得如何運用言語，也很容易找到對方能夠理解和接受的表達方式。原本複雜的概念、不同的立場，甚至彼此難以靠近的人，經過你的整理與轉化，常常就能重新找到溝通的入口。你的語言不只是傳遞資訊，更有一種能改變理解、連結彼此的力量。", "當這份能力被好好發揮時，你可以用言語替一個想法找到價值、替一件事打開可能，也能讓原本被忽略的東西重新被人看見。你很適合把這份天賦帶進更大的舞台，讓自己的表達不只用來維持關係，也能真正影響、教學、連結與創造。", "但如果太快進入說服，也可能還沒完全聽懂對方，就急著替事情下結論；有時為了讓關係保持和諧，也會說出對方想聽、卻不完全是自己真實感受的話。你真正厲害的，不只是讓別人接受你的話，而是讓不同的聲音經過你之後，終於能夠理解彼此。"], "teaser": "有些話經過你，就能讓不同的世界彼此理解。"}, "imbalanceExpression": "太依賴說服力，可能說得比實際做得快，或在還沒有真正理解對方前，就急著讓對方接受自己的說法。也可能為了維持氣氛與關係，說出符合當下需要、卻未必完全符合內心的話。", "matureExpression": "能把複雜的內容說清楚，把彼此不同的立場放進同一場對話裡。語言不只是展示自己的工具，也能成為溝通、協調、銷售、教學與創造價值的能力。", "name": "節制", "number": 14, "practicalNotes": "在這套系統裡，14 的核心不是抽象的平衡，而是口才與表達。適合需要說話、溝通、銷售、主持、談判、教學、顧問、內容傳遞，或透過語言獲得信任與價值的工作。"}, "15": {"coreMeaning": "自我導向、利益、慾望、吸引力，以及「自己」的範圍。很清楚自己想要什麼，也比較能感受到利益、需求與慾望的存在。這張牌的關鍵不只是自我，而是這個人如何定義「自己」。", "displayCopy": {"closingNote": "困住你的往往不是想要，而是在害怕失去時，忘了自己仍然可以選擇。", "keywords": ["欲望", "吸引", "選擇"], "readingParagraphs": ["你對自己的渴望、喜好與目標通常有很強的感受。一旦某件事真正吸引你，你便能集中注意力、資源與企圖心，把想要的東西一步步帶到自己面前。你身上有一股非常直接的生命力：你知道自己想要什麼，也有能力為它創造結果。", "當這張牌成熟時，你不需要壓抑自己的欲望，而是能誠實看見它，並清楚決定要如何使用這股力量。當你心裡的「自己」不只包含個人，也包含家庭、夥伴或想守護的事，你甚至會為整體爭取比只為自己更多的可能。", "但如果對一件事的渴望逐漸被害怕失去取代，也可能把喜歡變成佔有、把追求變成控制，或為了眼前的滿足，忽略這個選擇長期會把自己帶到哪裡。真正需要被看見的，不是你想要什麼，而是當你害怕得不到時，是否仍然記得自己擁有選擇。"], "teaser": "當你看見是什麼困住了自己，選擇才真正開始。"}, "imbalanceExpression": "如果「自己」的範圍太小，容易只看見眼前利益、控制、佔有或個人需求；也可能因為害怕失去，而過度抓緊人、資源或關係。", "matureExpression": "能誠實面對自己的需求，也懂得運用吸引力、資源感與企圖心創造結果。當「自己」的範圍包含伴侶、家庭、團隊或共同目標時，也可能非常積極地替整體爭取利益。", "name": "惡魔", "number": 15, "practicalNotes": "不要把惡魔直接解成邪惡或壞。真正要看的是：「他的自我是只包含自己，還是已經擴大到他所在乎的人與共同體？」同樣的自我導向，可能成為自私，也可能成為保護與替整體爭取資源的力量。"}, "16": {"coreMeaning": "毀滅、爆發、壓抑到臨界點後的全面釋放。很多情緒與問題不一定會在第一時間表現出來，可能先忍耐、累積、撐住，直到超過承受範圍，才突然整個炸開。", "displayCopy": {"closingNote": "你不必等到一切倒下才承認哪裡需要改變；越早說出真實，改變就能越溫柔。", "keywords": ["突破", "釋放", "重建"], "readingParagraphs": ["你身上有一股很強的突破力量。當一個結構已經失去真實、某種狀態累積了太多壓力，或原本的限制再也容納不了現在的你，這股力量就會推動改變，讓被壓住的問題一次浮上來。高塔不一定代表災難，它更像是生命不再允許一切繼續假裝沒有問題。", "當這份力量成熟時，你會在事情徹底崩潰以前，就看見哪裡已經不穩，願意提早說出真話、調整結構，或打破不再適合的限制。但如果長期忍耐、壓抑，不願意處理真正的感受，壓力也可能一直累積，最後透過情緒爆發、突然切斷或一次推翻所有事情的方式釋放，連原本值得保留的部分也一起摧毀。"], "teaser": "有些崩塌不是失去，而是讓真實重新露出來。"}, "imbalanceExpression": "長期壓抑、不說、不處理，直到最後以劇烈情緒、突然切斷或全面破壞的方式爆發。事後可能連原本值得保留的部分也一起摧毀。", "matureExpression": "能及早辨認已經不穩固的結構，在真正崩潰前誠實處理問題。高塔的力量也能用來打破不適合的限制，快速清除已經無法繼續維持的狀態。", "name": "高塔", "number": 16, "practicalNotes": "高塔真正需要注意的不是「一定會發生災難」，而是壓力如何累積。越早允許自己說出真實感受、調整不合理的結構，就越不需要用爆炸的方式讓問題被看見。"}, "17": {"coreMeaning": "Super Star、形象、包裝，以及讓自己或事物被看見的能力。很懂得如何把自己、產品、理念與故事整理成別人容易理解、接受和記住的樣子。", "displayCopy": {"closingNote": "你不必成為另一個人才能發光；不迎合任何目光，也能自在地享受自己的閃耀。", "keywords": ["形象", "魅力", "被看見"], "readingParagraphs": ["你很有能力看見一個人、一件作品或一個想法最有吸引力的地方，也知道該如何透過形象、故事與呈現方式，讓這份價值被更多人理解和記住。別人可能只看見一個普通的東西，你卻能找到它值得被看見的位置，再把那個亮點放大。", "當這份力量用在自己身上，你也很有機會成為具有辨識度與影響力的人。你如何看待自己、如何整理自己的故事，會逐漸成為世界認識你的方式。包裝對你而言不是虛假，而是一種讓內在價值被正確接收的能力。", "但如果太在意別人眼中的自己，也可能為了維持某種形象，不敢讓人看見真實的疲倦、迷惘與改變。你不需要放棄呈現，只要記得：真正長久的光，不是創造一個完美的人設，而是讓外在的樣子始終承載著真實的內容。"], "teaser": "你所相信的自己，也正在成為世界看見你的方式。"}, "imbalanceExpression": "過度在意外在形象與別人眼中的自己，可能把包裝放在內容前面，或為了維持某種人設而逐漸遠離真實感受。", "matureExpression": "能看見一個人或產品最有吸引力的地方，再透過形象、故事、表達與呈現把它放大。適合品牌、媒體、行銷、表演、內容創作，以及需要建立辨識度的工作。", "name": "星星", "number": 17, "practicalNotes": "星星不只代表夢想或希望，在這套系統裡，更重要的是「如何讓價值被看見」。包裝本身不是虛假；真正要確認的是，呈現出來的形象是否仍然承載真實內容。"}, "18": {"coreMeaning": "安全感、孤獨、不確定感，以及需要時間成熟的內在世界。對未知、關係變化與情緒氛圍較敏感，內在常需要更多確認，才能真正感到安心。它也屬於晚熟牌，很多力量需要經過時間與經驗才會慢慢穩定。", "displayCopy": {"closingNote": "月亮過後就是太陽；你現在看不清楚，不代表前方沒有方向。", "keywords": ["安全感", "敏感", "成熟"], "readingParagraphs": ["你的內在世界比別人更細膩，也更需要安全感。關係裡微小的變化、語氣裡的不確定，或一件尚未得到答案的事，都可能在你心裡停留很久。你不是故意想太多，而是對未知與情緒氛圍的感受本來就比較深，需要更多時間與確認，才能真正安定下來。", "這也是一張需要時間成熟的牌。年輕時，你可能還不容易分辨眼前的不安究竟來自現實，還是來自心裡對失去的想像；即使身邊有人，也可能常覺得沒有人真正理解自己。但隨著經驗增加，你會越來越懂得辨認自己的感受，也能發展出很深的情緒理解力與對人心的洞察。", "你不必要求自己立刻想通，也不需要因為暫時看不清楚，就讓恐懼替你做決定。迷霧不是永遠的，只是有些答案需要在你心裡多停留一會兒，才會慢慢長出輪廓。"], "teaser": "不必急著走出迷霧，先聽懂它正在提醒你什麼。"}, "imbalanceExpression": "容易因為缺乏安全感而反覆猜測、害怕失去，或在還沒有足夠資訊時，先被自己的想像帶走。即使身邊有人，也可能感到只有自己能理解自己的孤獨。", "matureExpression": "能理解自己的敏感與不安，不急著否定它，也不讓它替自己做所有決定。經過累積後，會逐漸發展出很深的情緒理解力與對人心的感受能力。", "name": "月亮", "number": 18, "practicalNotes": "月亮過後就是太陽。它不是永遠困在黑暗裡，而是需要比別人更多時間，讓模糊的感受慢慢長出清楚。不要催促月亮立刻想通；真正重要的是，在不確定裡仍然逐步建立自己的安全感。"}, "19": {"coreMeaning": "人緣、小太陽、溫暖，以及天然使人靠近的力量。通常容易讓人感到親切、舒服、被理解或被療癒。即使沒有刻意表現，也可能自然成為團體裡帶動氣氛與提供溫度的人。", "displayCopy": {"closingNote": "你不必永遠明亮；當你不再拒絕自己的陰天，世界也會學會如何溫柔地接住你。", "keywords": ["溫暖", "人緣", "療癒"], "readingParagraphs": ["你身上有一種很自然的親切感。即使沒有刻意表現，別人也容易在你身邊感到舒服、放鬆，甚至產生一種被理解、被療癒的感覺。大家不一定說得出為什麼喜歡你，只是你的存在本身，就會為空間帶來溫度。", "當這份力量成熟時，你不只容易受到喜愛，也能創造信任、凝聚關係，讓身邊的人感覺自己被看見。你分享的光不需要很用力，它可能只是一句真誠的話、一個自然的笑容，或在別人需要時，給出剛剛好的陪伴。", "但當大家都習慣從你身上獲得溫暖，你也可能漸漸以為自己必須一直開朗、懂事，或負責照顧所有人的氣氛。你可以是別人的小太陽，也依然可以有疲倦、低落和不想發光的時候。真正的溫暖從來不是表演，而是你允許自己真實存在時，自然散發出來的力量。"], "teaser": "你不必刻意照亮誰，溫暖本身就會讓人想靠近。"}, "imbalanceExpression": "太習慣當別人的小太陽，可能覺得自己必須一直開朗、溫暖或照顧氣氛，因而忽略自己也會疲倦、低落與需要被理解。", "matureExpression": "願意分享自己的光，也能讓別人在自己身邊感到被看見。這份人緣不只是受歡迎，而是能創造信任、凝聚關係並為環境帶來生命力。", "name": "太陽", "number": 19, "practicalNotes": "太陽的優勢是天然討喜與人緣，但不代表必須永遠保持正面。真正成熟的太陽，不是勉強自己一直發光，而是知道何時分享溫暖，也允許自己休息。"}, "2": {"coreMeaning": "感知、觀察、理解沒有被說出口的訊息。很多時候知道的比說出來的更多，能讀到語言之外的情緒、氛圍與狀態。靈性感知與同理能力通常較強。", "displayCopy": {"closingNote": "這張牌常在人際互動、情緒感受、傾聽，或需要讀懂言語之外訊息時特別明顯。", "keywords": ["感知", "觀察", "理解"], "readingParagraphs": ["你常常能感覺到那些還沒有被說出口的部分。語氣裡細微的變化、空間裡的氣氛，或一個人藏在話語背後的情緒，你可能比多數人更早察覺。這不是想得太多，而是你本來就接收得到更多訊息。", "當這份感知成熟時，它會成為很深的理解力，讓你不必急著反應，也能慢慢看清事情真正的樣子。但如果吸收得太多，你也可能分不清哪些感受屬於自己、哪些只是從別人身上接收到的。你不需要關掉敏感，只需要記得：能夠理解一個人，不代表必須替他承接所有情緒。"], "teaser": "有些答案，不必急著說出口，也正在慢慢成形。"}, "imbalanceExpression": "容易吸收太多外界情緒，把別人的感受帶回自己身上。", "matureExpression": "安靜觀察、精準感受，不需要所有事情都被明講才理解。", "name": "女祭司", "number": 2, "practicalNotes": "你可以理解很多人，但不需要把所有人的感受都帶回自己身上。"}, "20": {"coreMeaning": "公平、衡量、自己的標準，以及對價值是否對等的敏感。對事情常有一套自己的判斷方式，會在意合理性、責任、付出與回報是否相稱。", "displayCopy": {"closingNote": "那個反覆出現的聲音，不一定要你立刻改變；它可能只是在提醒你，還有一部分的自己尚未被活出來。", "keywords": ["衡量", "價值", "召喚"], "readingParagraphs": ["你的心裡有一套很清楚的衡量標準。面對一個人或一件事，你不只會問自己喜不喜歡，也會在意它是否合理、是否值得，以及每個人的付出、責任與回應是否對等。當現實中的選擇與內心真正相信的價值不一致時，你往往很難假裝自己沒有感覺。", "有些時候，你所聽見的「召喚」，其實就是內在矛盾正在彼此對話。一部分的你想維持現在的生活，另一部分卻知道自己還有某些價值沒有被實現、某個更真實的自己還沒有活出來。那個聲音不一定是在催促你立刻改變，而是在提醒你：現在的選擇，可能已經無法完整代表你真正相信的事。", "當這份力量成熟時，你能在不同聲音之間慢慢形成穩定的價值判斷，辨認什麼值得繼續、什麼不必再投入，也願意為自己的決定負責。但如果太急著替事情定案，自己的標準也可能變得僵硬，讓你不斷評判誰對誰錯，或反覆計算誰付出得比較多、誰虧欠了誰。", "你不需要放棄標準，只需要讓標準隨著理解一起成熟。真正的審判不是替所有人定罪，而是在一次次內在對話之後，終於聽清楚自己願意選擇什麼，又願意成為怎樣的人。"], "teaser": "你聽見的召喚，也許正來自那個尚未活出的自己。"}, "imbalanceExpression": "當理解尚未成熟時，自己的標準可能變得僵硬，容易讓人感覺挑剔、難搞或什麼事情都要評判。也可能因為太在意公平，而反覆計算誰付出得多、誰虧欠了誰。", "matureExpression": "能形成穩定的價值判斷，不只是依照情緒或他人意見做決定。當理解逐漸成熟後，通常很會辨認什麼值得、什麼不值得，以及一件事情真正需要被負責的部分。", "name": "審判", "number": 20, "practicalNotes": "20 與 11 不完全相同。11 正義偏向分析、反覆衡量與對差異的敏感；20 審判更接近一個人最後用什麼標準做出價值判斷。靈智未開時可能顯得難搞；理解打開後，會成為很好的判斷力。"}, "21": {"coreMeaning": "海外、國際、跨界，以及透過不同世界打開可能性。當原本的環境、圈子或方法卡住時，換一個地方、文化、領域或觀看角度，事情往往就會重新流動。", "displayCopy": {"closingNote": "有時不是你走錯了路，而是眼前的世界，已經裝不下正在長大的你。", "keywords": ["海外", "跨境", "拓展"], "readingParagraphs": ["你的可能性很容易在離開熟悉的範圍之後被打開。不同的城市、文化、語言、領域與生活方式，不只會帶給你新的經驗，也可能讓原本沒有機會被使用的能力，突然找到適合發揮的位置。當一條路走不通時，問題未必是你不夠好，有時只是目前的世界還無法容納完整的你。", "當這份力量成熟時，你能跨越原本熟悉的邊界，把不同地方、文化與領域裡得到的經驗連接起來，形成更寬廣的視野。你很適合旅行、海外發展、跨界合作，或任何能讓自己接觸不同世界的機會。每一次走出去，都可能讓你看見人生原來還有另一種可能。", "但如果總覺得答案一定在更遠的地方，也可能不斷更換環境、追逐下一個世界，卻沒有真正把得到的經驗帶回自己身上。走出去是為了擴展，不是為了逃離。真正成熟的世界，不只是去過很多地方，而是每到一個地方，都讓自己的世界變得更完整。"], "teaser": "換一個世界，答案往往就打開了。"}, "imbalanceExpression": "容易覺得答案永遠在別的地方，不斷更換環境或追求更大的世界，卻沒有把經驗真正帶回自己身上。也可能因為選擇太多，而難以長期落地。", "matureExpression": "能跨越原本熟悉的邊界，把不同領域、文化與經驗連接起來。適合海外發展、旅行、國際工作、跨界合作，以及任何需要擴大視野與活動範圍的事情。", "name": "世界", "number": 21, "practicalNotes": "世界的重點不是單純「圓滿」，而是世界的擴張。當一個人長期卡住時，可以觀察是不是待在太小或太熟悉的環境裡。很多時候，不是能力不夠，而是需要換一個世界。"}, "22": {"coreMeaning": "起點也是終點、大器晚成，以及讓所有經歷最終成為材料。前期常會東摸西看、嘗試很多不同方向，看起來不一定有一條很早就確定的直線道路。但走過的路通常不會真正浪費，最後會在某個階段被重新整合。", "displayCopy": {"closingNote": "你走過的每一段路，都在等待未來的你，把它們連成只有自己才能完成的答案。", "keywords": ["探索", "整合", "大器晚成"], "readingParagraphs": ["你的人生不一定很早就會出現一條清楚而筆直的道路。前期的你可能對很多事情感到好奇，走進不同的領域、嘗試不同的角色，也可能幾次改變原本以為會一直走下去的方向。身邊的人或許會覺得你三分鐘熱度，連你自己偶爾也會懷疑，是不是總在開始，卻沒有真正抵達哪裡。", "但你不一定是在放棄，你可能只是在探索。你需要親自走進一條路，才會知道那裡有什麼、適不適合自己，以及哪些部分值得被帶走。那些看似彼此無關的興趣、能力與經歷，通常不會白費；它們會在時間足夠之後慢慢連接起來，最後形成只有你能完成的組合。", "當這份力量成熟時，你依然保有探索未知的勇氣，也開始懂得把每一次經歷留下來，讓嘗試逐漸累積成能力、作品與結果。但如果每一次剛遇到困難，就立刻被下一個新鮮的可能帶走，所有道路也可能都來不及長出真正的深度。", "你不需要為了證明自己專一，就勉強留在不適合的路上；只需要在每次轉身以前問問自己：這一次，我已經帶走了什麼？"], "teaser": "不必看清整條路，也可以先相信下一步。"}, "imbalanceExpression": "容易一直停留在嘗試與開始，興趣很多、方向很多，卻沒有讓任何一條路累積到能夠產生結果。也可能因為還看不出所有經歷的關聯，而懷疑自己是不是浪費了時間。", "matureExpression": "願意探索，也能把不同經歷、能力與興趣慢慢收回來，形成只有自己能完成的組合。它的成熟不是很早就定型，而是在走過足夠多的路之後，理解自己真正要把什麼帶進世界。", "name": "愚者", "number": 22, "practicalNotes": "22 永遠顯示為 22，不顯示為 0。愚者不是沒有方向，而是它的完整方向通常比較晚才會被看見。前期的繞路、嘗試與多元經驗，往往會在後期變成很重要的材料，因此常帶有大器晚成的特質。"}, "3": {"coreMeaning": "給予、照顧、讓愛成為具體行動。對人的需求敏感，願意照顧、提供資源、把事情安排得舒服。男性有皇后也可能非常重視家庭、伴侶與孩子。", "displayCopy": {"closingNote": "這張牌常在家庭、關係、照顧他人，或需要讓一件事慢慢長大的時候特別明顯。", "keywords": ["給予", "照顧", "滋養"], "readingParagraphs": ["你很自然會留意到別人的需要，也懂得怎麼把愛變成具體的行動。可能是一份照顧、一個舒服的安排，或在對方還沒有開口以前，就先替他想到需要的東西。你的給予不只是情感，而是有能力讓身邊的人真正感受到被接住。", "這份力量成熟時，你會在自己有餘裕的範圍裡給予，讓照顧成為一種溫柔而穩定的流動。但當你太習慣把注意力放在別人身上，也可能忘記自己同樣需要被照顧。你不必停止付出，只是要記得把自己也放進那份溫柔裡。"], "teaser": "當你願意滋養自己，生命也會開始回應你。"}, "imbalanceExpression": "太習慣照顧別人，容易忘記自己也應該被放進「值得照顧的人」裡。", "matureExpression": "在自己的能力範圍裡給予，讓身邊的人感受到被照顧。", "name": "皇后", "number": 3, "practicalNotes": "與吊人的犧牲不同，皇后的給予原則上是在自己有能力的範圍內。"}, "4": {"coreMeaning": "掌握、主導、整體配置。自然會思考事情怎麼安排、怎麼推進，以及如何讓整體價值最大化。希望局面有秩序，也容易有自己的標準。", "displayCopy": {"closingNote": "這張牌常在工作、規劃、帶領他人，或需要做決定時特別明顯。", "keywords": ["主導", "大局", "責任"], "readingParagraphs": ["你很自然會先去思考：事情該怎麼安排、怎麼推進、怎麼讓整體效益最大化。你不太像憑一時情緒衝出去的人，反而更常先看清局勢，再決定要不要出手。", "這張牌成熟時，會讓你成為能承擔、能整合，也能替局面定錨的人；但如果壓力太大，則可能不自覺想掌握所有細節，甚至要求人、進度與結果都依照自己的預想發生。你真正要學的，不是放棄掌握，而是分辨什麼需要你定錨，什麼可以交還給事情自己的流動。當你不再試著控制每一步，往往反而走得更加順利。"], "teaser": "在掌握方向之前，先看見整體。"}, "imbalanceExpression": "過度控制、要求別人依照自己的方式運作，或把「我認為最有效率」等同於唯一答案。", "matureExpression": "願意承擔、看大局、整合資源，並在聽取不同意見後做出決定，成為成熟的領導者。", "name": "皇帝", "number": 4, "practicalNotes": "皇帝不是單純霸道，而是「我要掌握整體」。成熟程度會決定它成為領導力還是控制。"}, "5": {"coreMeaning": "教學、提煉、傳遞理解。很會從複雜資訊裡抓出精華，再整理成別人容易理解、容易走的路。常帶有服務、使命、教導意味。", "displayCopy": {"closingNote": "這張牌常在心靈探索、教學、顧問、服務、內容整理，或需要把複雜事物說明清楚時特別明顯。", "keywords": ["教學", "提煉", "傳遞"], "readingParagraphs": ["你很擅長從複雜的資訊裡抓住真正重要的部分，再把它整理成別人聽得懂、也能實際使用的方法。你不只是理解得快，更有一種能替人理清方向的能力；很多原本混亂或難以靠近的事情，經過你的轉化，就會變成一條比較容易走的路。", "你本身也很容易被心靈、真理、生命真相與靈魂層面的議題吸引。你通常不滿足於只知道一件事表面上如何運作，而會想繼續往裡面走，理解它更深的意義。這份探索也可能逐漸成為你長期學習、發展，甚至帶領別人的方向。", "當這份力量成熟時，你分享的不只是答案，而是讓別人也逐漸擁有理解與選擇的能力。但如果太相信自己的框架，也可能在不知不覺中認為「這就是最好的方法」，忘了每個人需要走的路並不完全相同。你真正要傳遞的，不是唯一答案，而是幫助對方長出自己的理解。"], "teaser": "你所理解的，終有一天會成為別人的方向。"}, "imbalanceExpression": "可能太相信自己的理解框架，無意間變成說教或認為自己的方法適合所有人。", "matureExpression": "把自己的理解轉化成別人可以使用的知識。不是只分享答案，而是在替別人搭一座橋。", "name": "教宗", "number": 5, "practicalNotes": "與皇后不同，皇后偏向「照顧你的需要」，教皇偏向「讓你學會、理解、自己走」。"}, "6": {"coreMeaning": "貴人、合作、關係中的幫助與開門。很多事情不一定需要一個人硬做到底，人生中比較容易透過他人、合作或關係得到新的機會。", "displayCopy": {"closingNote": "有些門，不需要你撞開；你真正需要做的，是認出那個願意替你開門的人。", "keywords": ["相遇", "合作", "貴人"], "readingParagraphs": ["你的生命裡，很多重要的門不一定需要靠自己撞開。人與人的相遇、一次合作，或某個願意理解並支持你的人，常會為你帶來原本一個人看不見的可能。你的力量不只存在於自己身上，也會在關係裡被喚醒。", "當這張牌成熟時，你會逐漸認出哪些人真正願意與你互相成就，也懂得敞開自己，接受別人帶來的幫助。但如果太依賴關係給你答案，也可能為了留住一段連結，而忽略自己真正的感受與選擇。你可以接受別人替你開門，卻仍然要由自己決定是否走進去。"], "teaser": "你不必獨自完成一切，有些答案會由相遇帶到你面前。"}, "imbalanceExpression": "太依賴關係帶來答案，或因為關係而忽略自己的選擇。", "matureExpression": "能辨認真正願意合作、支持與互相成就的人。", "name": "戀人", "number": 6, "practicalNotes": "有些門，不需要你撞開。你真正需要做的，是認出那個願意替你開門的人。6＋10 時，通常會讓事情的順暢度與外在助力更明顯。"}, "7": {"coreMeaning": "目標、推進、抵達。當真正知道自己要去哪裡時，阻力很難讓他停下來。具有很強的任務感、目標導向與執行推進能力，常見於創業或需要突破的人。", "displayCopy": {"closingNote": "你不需要跑贏旁邊的人；你真正要抵達的，一直都是自己的目的地。", "keywords": ["目標", "推進", "抵達"], "readingParagraphs": ["當你真正知道自己要去哪裡時，身上的力量會很自然地集中起來。你不太容易被眼前的阻力勸退，反而會在目標清楚之後，快速找到下一步，並持續把事情往前推進。你需要的往往不是更多動力，而是一個此刻足以吸引你投入的方向。", "當某件事成為你當下認定的重要目標，這份力量就會被啟動。你會把專注與行動集中在那件事上，不因為外界的聲音輕易偏離。但這股推進力本身不會替你判斷方向的好壞；如果目光一直放在別人的進度上，也可能不自覺把人生變成一場競賽，為了證明自己而過度衝撞。因此，比起一味要求自己前進得更快，偶爾確認正在追逐的是否仍是自己想要的，也同樣重要。"], "teaser": "當方向足夠清楚，力量自然會向你聚集。"}, "imbalanceExpression": "容易一直看旁邊的人走到哪裡，拿自己的進度與別人比較。也可能為了達標過度衝撞。", "matureExpression": "清楚目的地，把力量集中在真正重要的方向。", "name": "戰車", "number": 7, "practicalNotes": "你不需要跑贏旁邊的人。你真正要抵達的，一直都是自己的目的地。"}, "8": {"coreMeaning": "策略、以柔克剛、降低損耗。如果戰車遇到牆會想辦法突破，力量會先思考：有沒有更省力、更安全、更有效的方法繞過去。", "displayCopy": {"closingNote": "這張牌常提醒你：穩，不等於慢；柔，也不等於弱。", "keywords": ["策略", "規劃", "柔性力量"], "readingParagraphs": ["你的力量不太像外放的衝動，更像一種知道如何用對力氣的成熟感。你擅長評估局勢、規劃路徑，並把不必要的損耗降到最低。", "很多人會把力量理解成更拚、更硬、更快，但你真正厲害的地方，是懂得什麼時候該推進、什麼時候該等待、什麼時候換個方式反而更有效。這會讓你在長期戰裡很有續航力，也比別人更不容易白白耗掉自己。"], "teaser": "不必撞破每一道牆，你也能抵達。"}, "imbalanceExpression": "過度規劃、過度避免損耗，可能因此拖延真正需要面對的行動。", "matureExpression": "評估局勢、規劃路徑、用對力氣，不需要證明自己能硬碰硬。", "name": "力量", "number": 8, "practicalNotes": "不必撞破每一道牆，你也能抵達。"}, "9": {"coreMeaning": "環境、學習、吸收、整合。學習與模仿吸收能力很強，環境以及長期相處的人，對這張牌的影響尤其明顯。喜歡一件事情時，可以非常快速地吸收並內化。", "displayCopy": {"closingNote": "你的天賦很吃土壤，所以有意識地選擇圈子，常常比多做十倍努力更重要。", "keywords": ["環境", "學習", "吸收"], "readingParagraphs": ["你的學習與吸收能力很強，環境對你的塑形也比多數人更明顯。對你來說，跟誰長期相處、待在哪個場域，往往會真正改變你最後活成的樣子。因此，環境對你不只是被動存在的背景，而是值得被你有意識選擇的一部分。", "這張牌也意味著，你需要有能讓自己沉澱與整理的空間。當外界太吵、資訊太雜，你反而容易失焦；但當你主動選擇適合自己的場域、接觸真正想靠近的人與事，你的理解力、洞察力與成長速度就會非常快。"], "teaser": "你選擇的環境，也在悄悄選擇未來的你。"}, "imbalanceExpression": "長期待在不適合的場域裡，也可能把周遭不適合自己的模式吸收進來。", "matureExpression": "選擇適合自己的環境與人，把一路接收到的資訊慢慢整合成自己的理解。", "name": "隱者", "number": 9, "practicalNotes": "本命有 9 時，環境選擇尤其重要。它不是「孤僻牌」，核心更接近環境與學習。隱者與其他人的牌、自己的隱藏牌之間可能產生明顯觸發。"}};
+
+/* ===== 讀取由 02 頁計算並暫存的結果（sessionStorage，僅此瀏覽器分頁、不永久保存） ===== */
+/* ===== 年齡：衍生資料，每次開啟頁面都以生日與當日日期重新計算，不採信 sessionStorage 中可能存在的舊值 =====
+   2月29日出生者，在非閏年以3月1日視為完成生日 */
+function isLeapYear(y){ return (y%4===0&&y%100!==0)||y%400===0 }
+function calculateAge(y,m,d){
+  const today = new Date();
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth()+1;
+  const currentDate = today.getDate();
+
+  let effectiveMonth = m, effectiveDay = d;
+  if(m===2 && d===29 && !isLeapYear(currentYear)){
+    effectiveMonth = 3;
+    effectiveDay = 1;
+  }
+
+  let age = currentYear - y;
+  const birthdayNotYetThisYear =
+    (currentMonth < effectiveMonth) ||
+    (currentMonth === effectiveMonth && currentDate < effectiveDay);
+  if(birthdayNotYetThisYear){
+    age--;
+  }
+  return age;
+}
+
+function getResult(){
+  try{
+    const raw = sessionStorage.getItem('soulRecipeResult');
+    if(!raw) return null;
+    const data = JSON.parse(raw);
+    if(!data || !Array.isArray(data.rawOrder) || data.rawOrder.length !== 6 || !Array.isArray(data.hiddenCards)){
+      return null;
+    }
+    data.gender = data.gender || '不指定';
+    data.age = calculateAge(data.year, data.month, data.day);
+    return data;
+  }catch(err){
+    return null;
+  }
+}
+
+function summarizeRaw(raw){
+  const c = {};
+  raw.forEach(n => c[n] = (c[n]||0) + 1);
+  return Object.keys(c).map(Number).sort((a,b)=>a-b).map(n => ({ n, count: c[n] }));
+}
+
+function renderBirthCards(data){
+  const summary = summarizeRaw(data.rawOrder);
+
+  document.getElementById('birthSummaryLine').textContent =
+    `原始序列：${data.rawOrder.join('・')}　顯示：${summary.map(x => x.n + (x.count>1?'×'+x.count:'')).join('、')}`;
+
+  const grid = document.getElementById('birthCardsGrid');
+  grid.innerHTML = summary.map((item, idx) => {
+    const card = CARDS[String(item.n)];
+    if(!card) return '';
+    const seq = String(idx+1).padStart(2,'0');
+    const repeatBadge = item.count>1 ? `<div class="repeat-badge">重複出現 ×${item.count}</div>` : '';
+    return `<article class="card tarot">
+      ${repeatBadge}
+      <div class="seq">${seq}</div>
+      <div class="num">${card.number}</div>
+      <h3>${card.name}</h3>
+      <div class="short">${card.displayCopy.teaser}</div>
+      <details class="tarot-native"><summary><span class="open-text">展開解讀</span><span class="close-text">收起解讀</span></summary>
+        <div class="native-detail">
+          ${card.displayCopy.readingParagraphs.map(p => `<p>${p}</p>`).join('')}
+        </div>
+        ${card.displayCopy.keywords ? `<div class="keywords">${card.displayCopy.keywords.map(t => `<span class="keyword">${t}</span>`).join('')}</div>` : ''}
+        <div class="detail-note">${card.displayCopy.closingNote}</div>
+      </details>
+    </article>`;
+  }).join('');
+}
+
+function renderHiddenCards(data){
+  const pills = document.getElementById('hiddenCardsPills');
+  pills.innerHTML = data.hiddenCards.map(n => {
+    const card = CARDS[String(n)];
+    return card ? `<span class="hidden-pill">${card.number} ${card.name}</span>` : '';
+  }).join('');
+
+  const grid = document.getElementById('hiddenCardsGrid');
+  grid.innerHTML = data.hiddenCards.map(n => {
+    const card = CARDS[String(n)];
+    if(!card) return '';
+    return `<div class="hidden-mini">
+      <strong>${card.number}｜${card.name}</strong>
+      <p>${card.displayCopy.teaser}</p>
+      <details class="tarot-native">
+        <summary><span class="open-text">展開解讀</span><span class="close-text">收起解讀</span></summary>
+        <div class="native-detail">
+          ${card.displayCopy.readingParagraphs.map(p => `<p>${p}</p>`).join('')}
+        </div>
+        ${card.displayCopy.keywords ? `<div class="keywords">${card.displayCopy.keywords.map(t => `<span class="keyword">${t}</span>`).join('')}</div>` : ''}
+        <div class="detail-note">${card.displayCopy.closingNote}</div>
+      </details>
+    </div>`;
+  }).join('');
+}
+
+function renderOwner(data){
+  document.getElementById('ownerNameValue').textContent = data.name;
+  document.getElementById('ownerBirthValue').textContent = data.dateDisplay;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const data = getResult();
+  if(!data){
+    window.location.replace('02_建立命卡頁.html');
+    return;
+  }
+  renderOwner(data);
+  renderBirthCards(data);
+  renderHiddenCards(data);
+});
+</script>
+</body>
+</html>
