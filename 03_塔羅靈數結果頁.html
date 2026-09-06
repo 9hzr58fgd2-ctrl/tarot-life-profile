@@ -308,6 +308,26 @@ details:not([open]) > *:not(summary){display:none}
 </div>
 </div>
 
+<!-- 分享用的精簡圖卡，離開畫面外渲染，只給 html2canvas 截圖用，使用者看不到這個版面 -->
+<div id="shareCardCompact" style="position:absolute;left:-9999px;top:0;width:750px;background:#F8F4EE;padding:56px 44px;font-family:'Noto Sans TC',sans-serif;color:#2C2824;box-sizing:border-box">
+  <div style="text-align:center;margin-bottom:34px">
+    <div style="font-size:12px;letter-spacing:.2em;color:#9E6E68;font-weight:900;text-transform:uppercase">Soul Recipe · Tarot Numerology</div>
+    <div style="font-family:'Noto Serif TC';font-size:32px;font-weight:900;margin-top:12px">我的塔羅靈數命卡</div>
+  </div>
+  <div style="text-align:center;margin-bottom:34px">
+    <div id="compactOwnerName" style="font-family:'Noto Serif TC';font-size:26px;font-weight:700">—</div>
+    <div id="compactOwnerBirth" style="font-size:14px;color:#877C73;margin-top:6px">—</div>
+  </div>
+  <div style="font-size:13px;font-weight:900;letter-spacing:.1em;color:#9E6E68;margin-bottom:14px">本命牌</div>
+  <div id="compactBirthCards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:34px"></div>
+  <div style="font-size:13px;font-weight:900;letter-spacing:.1em;color:#9E6E68;margin-bottom:14px">隱藏牌</div>
+  <div id="compactHiddenCards" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:38px"></div>
+  <div style="text-align:center;padding-top:26px;border-top:1px solid #E7DDD2;font-size:12px;color:#9A8F86;line-height:1.9">
+    看懂自己，不是為了被定義，而是為了更自由地使用自己。<br>
+    靈魂配方使用手冊 · Soul Recipe Manual
+  </div>
+</div>
+
 <div id="imagePreviewModal" style="display:none;position:fixed;inset:0;background:rgba(44,40,36,.82);z-index:999;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this) closeImagePreview()">
   <div style="background:#fff;border-radius:24px;padding:20px;max-width:420px;width:100%;max-height:90vh;overflow:auto;text-align:center">
     <img id="previewImg" src="" alt="我的塔羅靈數命卡" style="width:100%;border-radius:16px;display:block;margin-bottom:14px">
@@ -440,7 +460,34 @@ document.addEventListener('DOMContentLoaded', () => {
   renderOwner(data);
   renderBirthCards(data);
   renderHiddenCards(data);
+  renderCompactCard(data);
 });
+
+/* ===== 分享用精簡圖卡的內容（跟正式命卡共用同一份 data，只是排版不同） ===== */
+function renderCompactCard(data){
+  const summary = summarizeRaw(data.rawOrder);
+
+  document.getElementById('compactOwnerName').textContent = data.name;
+  document.getElementById('compactOwnerBirth').textContent = data.dateDisplay;
+
+  const birthGrid = document.getElementById('compactBirthCards');
+  birthGrid.innerHTML = summary.map(item => {
+    const card = CARDS[String(item.n)];
+    if(!card) return '';
+    const repeatText = item.count > 1 ? ` ×${item.count}` : '';
+    return `<div style="background:#fff;border-radius:16px;padding:14px 8px;text-align:center;border:1px solid #E7DDD2">
+      <div style="font-family:'Noto Serif TC';font-size:22px;font-weight:900;color:#9E6E68">${card.number}</div>
+      <div style="font-size:13px;font-weight:700;margin-top:4px">${card.name}${repeatText}</div>
+    </div>`;
+  }).join('');
+
+  const hiddenWrap = document.getElementById('compactHiddenCards');
+  hiddenWrap.innerHTML = data.hiddenCards.map(n => {
+    const card = CARDS[String(n)];
+    if(!card) return '';
+    return `<span style="background:#E9F0F3;color:#6D8290;border-radius:999px;padding:8px 14px;font-size:12px;font-weight:700">${card.number} ${card.name}</span>`;
+  }).join('');
+}
 
 /* ===== 保存 / 分享命卡圖片 =====
    手機瀏覽器（尤其 iOS Safari）對 <a download> 支援不穩定，
@@ -478,7 +525,7 @@ function shareCardAsImage(){
   const originalText = btn.textContent;
   btn.textContent = '準備中…';
   btn.disabled = true;
-  html2canvas(document.getElementById('shareCapture'), {
+  html2canvas(document.getElementById('shareCardCompact'), {
     backgroundColor: '#F8F4EE',
     scale: 2,
     useCORS: true
