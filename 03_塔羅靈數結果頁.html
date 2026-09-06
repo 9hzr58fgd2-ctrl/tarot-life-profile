@@ -93,6 +93,9 @@
   align-items:center;
   gap:4px;
 }
+/* html2canvas 不會正確辨識 <details> 收合狀態的原生隱藏，改用明確的規則強制隱藏，
+   避免截圖時收合的展開解讀內容全部重疊顯示 */
+details:not([open]) > *:not(summary){display:none}
 .tarot-native summary::-webkit-details-marker{display:none}
 .tarot-native summary::after{content:'›';transition:transform .2s ease}
 .tarot-native[open] summary::after{transform:rotate(90deg)}
