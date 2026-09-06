@@ -92,15 +92,22 @@ input:focus{
   <div class="sheet">
     <label>這位客人的專屬亂碼</label>
     <input type="text" id="tokenInput" placeholder="例如 x7Yq9pLmN2Rk8" autocomplete="off">
+
+    <label style="margin-top:16px">顯示名稱（不是必填，解鎖時會跟「歡迎回家」一起顯示）</label>
+    <input type="text" id="nameInput" placeholder="例如 阿菲塔羅宇宙" autocomplete="off">
+
     <button class="gen-btn" id="genBtn">產生 QR Code</button>
 
     <div class="result" id="result">
       <div id="qrcode"></div>
       <div class="url-display" id="urlDisplay"></div>
+
+      <label style="margin-top:18px">複製這行到 Supabase SQL Editor 執行，這組亂碼才會真的生效</label>
+      <div class="url-display" id="sqlDisplay"></div>
     </div>
 
     <div class="hint">
-      長按（手機）或右鍵（電腦）QR code 圖片就可以存檔或直接傳給客人。記得這組亂碼要先在 Supabase 的 access_tokens 表裡新增過，QR code 才會真的有效。
+      長按（手機）或右鍵（電腦）QR code 圖片就可以存檔或直接傳給客人。記得先把下面那行 SQL 拿去 Supabase 執行過，這組亂碼才會真的有效。
     </div>
   </div>
 
@@ -115,8 +122,13 @@ const qrContainer = document.getElementById('qrcode');
 const resultEl = document.getElementById('result');
 const urlDisplayEl = document.getElementById('urlDisplay');
 
+function sqlEscape(str){
+  return str.replace(/'/g, "''");
+}
+
 document.getElementById('genBtn').addEventListener('click', function(){
   const token = document.getElementById('tokenInput').value.trim();
+  const displayName = document.getElementById('nameInput').value.trim();
   if(!token){
     alert('請先輸入這位客人的專屬亂碼');
     return;
@@ -133,6 +145,14 @@ document.getElementById('genBtn').addEventListener('click', function(){
   });
 
   urlDisplayEl.textContent = fullUrl;
+
+  const sqlEl = document.getElementById('sqlDisplay');
+  if(displayName){
+    sqlEl.textContent = `insert into access_tokens (token, display_name) values ('${sqlEscape(token)}', '${sqlEscape(displayName)}');`;
+  }else{
+    sqlEl.textContent = `insert into access_tokens (token) values ('${sqlEscape(token)}');`;
+  }
+
   resultEl.classList.add('show');
 });
 </script>

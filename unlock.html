@@ -77,7 +77,7 @@ h1{
 
   <main class="sheet" id="valid" style="display:none">
     <div class="kicker">Soul Recipe · Full Version</div>
-    <h1>歡迎回家</h1>
+    <h1 id="welcomeHeading">歡迎回家</h1>
     <p class="intro">你的完整版使用權已確認，即將帶你進入建立命卡頁。</p>
   </main>
 
@@ -120,13 +120,19 @@ h1{
     if(!res.ok) throw new Error('access check failed');
     return res.json();
   })
-  .then(isValid => {
-    if(isValid === true){
+  .then(data => {
+    if(data && data.valid === true){
       try{
         sessionStorage.setItem('soulRecipeFullVersion', 'true');
         sessionStorage.setItem('soulRecipeAccessToken', token);
+        if(data.display_name){
+          sessionStorage.setItem('soulRecipeDisplayName', data.display_name);
+        }
       }catch(err){
         // sessionStorage 無法使用時，仍放行到建立命卡頁，只是不會記得「完整版」狀態
+      }
+      if(data.display_name){
+        document.getElementById('welcomeHeading').textContent = `歡迎回家，${data.display_name}`;
       }
       checkingEl.style.display = 'none';
       validEl.style.display = 'block';
