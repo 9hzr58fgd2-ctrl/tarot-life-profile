@@ -1670,9 +1670,9 @@ function renderCompactCard(data){
     const card = CARDS[String(item.n)];
     if(!card) return '';
     const repeatText = item.count > 1 ? ` ×${item.count}` : '';
-    return `<div style="background:#fff;border-radius:16px;padding:14px 8px;text-align:center;border:1px solid #E7DDD2">
-      <div style="font-family:'Noto Serif TC';font-size:22px;font-weight:900;color:#9E6E68">${card.number}</div>
-      <div style="font-size:13px;font-weight:700;margin-top:4px">${card.name}${repeatText}</div>
+    return `<div style="text-align:center">
+      <div style="font-family:'Noto Serif TC';font-size:15px;font-weight:700;margin-bottom:8px">${card.number}｜${card.name}${repeatText}</div>
+      <div style="background:#fff;border-radius:16px;padding:14px 10px;border:1px solid #E7DDD2;font-size:11px;color:#877C73;line-height:1.6">${card.displayCopy.teaser}</div>
     </div>`;
   }).join('');
 
