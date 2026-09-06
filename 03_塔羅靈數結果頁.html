@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 :root{--bg:#F8F4EE;--paper:#FFFDF9;--ink:#2D2824;--muted:#877C73;--line:#E7DDD2;--rose:#C99991;--rose-deep:#9E6E68;--rose-soft:#F2E4E1;--blue:#8CA2B0;--blue-deep:#6D8290;--blue-soft:#E9F0F3;--gold:#B99A62;--gold-soft:#F2E8D5;--shadow:0 18px 55px rgba(49,39,33,.075)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(circle at 8% 0%,rgba(242,228,225,.74),transparent 26%),radial-gradient(circle at 93% 10%,rgba(233,240,243,.68),transparent 25%),var(--bg);font-family:'Noto Sans TC',sans-serif}button{font:inherit;cursor:pointer}.wrap{max-width:980px;margin:0 auto;padding:0 18px 90px}.eyebrow{color:var(--rose-deep);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}.section{padding:54px 0;border-top:1px solid var(--line)}.section h2{font-family:'Noto Serif TC';font-size:clamp(28px,5vw,42px);line-height:1.35;margin:8px 0 10px}.section-sub{font-size:13px;color:var(--muted);line-height:1.9;max-width:720px}
@@ -198,6 +199,7 @@
 </head>
 <body>
 <div class="wrap">
+<div id="shareCapture">
 <section class="hero" id="top">
   <div class="archive-cover">
     <div class="archive-top">
@@ -279,14 +281,15 @@
     <div class="integrated-final" style="font-size:13px;color:var(--muted);margin-top:14px;padding-top:14px">完整個人解析功能準備中。</div>
   </div>
 </section>
+</div>
 
 <section class="note-final">
   <div>
     <div class="eyebrow">A note for now</div><h2>給此刻的你</h2>
     <p>你不需要一次看懂全部。<br>先看見自己正在經歷什麼，就已經足夠。</p>
     <div class="actions">
-      <button class="action primary" onclick="alert('概念版：之後可接成圖片 / PDF 保存')">保存我的命卡</button>
-      <button class="action secondary" onclick="alert('概念版：之後可串分享功能')">分享這份命卡</button>
+      <button class="action primary" id="saveCardBtn" onclick="saveCardAsImage()">保存我的命卡</button>
+      <button class="action secondary" id="shareCardBtn" onclick="shareCardAsImage()">分享這份命卡</button>
       <button class="action ghost" onclick="location.href='02_建立命卡頁.html'">為另一個人建立命卡</button>
     </div>
     <button class="link-btn" style="margin-top:18px" onclick="alert('概念版：之後連到完整個人解析')">查看完整個人解析 ›</button>
@@ -427,6 +430,68 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBirthCards(data);
   renderHiddenCards(data);
 });
+
+/* ===== 保存 / 分享命卡圖片 ===== */
+function saveCardAsImage(){
+  const btn = document.getElementById('saveCardBtn');
+  const originalText = btn.textContent;
+  btn.textContent = '生成圖片中…';
+  btn.disabled = true;
+  html2canvas(document.getElementById('shareCapture'), {
+    backgroundColor: '#F8F4EE',
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = '我的塔羅靈數命卡.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(() => {
+    alert('圖片生成失敗，請再試一次');
+  }).finally(() => {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
+}
+
+function shareCardAsImage(){
+  const btn = document.getElementById('shareCardBtn');
+  const originalText = btn.textContent;
+  btn.textContent = '準備中…';
+  btn.disabled = true;
+  html2canvas(document.getElementById('shareCapture'), {
+    backgroundColor: '#F8F4EE',
+    scale: 2,
+    useCORS: true
+  }).then(canvas => {
+    canvas.toBlob(async (blob) => {
+      const file = new File([blob], '我的塔羅靈數命卡.png', { type: 'image/png' });
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try{
+          await navigator.share({
+            files: [file],
+            title: '我的塔羅靈數檔案',
+            text: '看看我的塔羅靈數命卡'
+          });
+        }catch(err){
+          // 使用者自己取消分享，不用特別處理
+        }
+      }else{
+        const link = document.createElement('a');
+        link.download = '我的塔羅靈數命卡.png';
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        alert('這個瀏覽器不支援直接分享，已經幫你把圖片下載下來，你可以自己傳給朋友');
+      }
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }, 'image/png');
+  }).catch(() => {
+    alert('圖片生成失敗，請再試一次');
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
+}
 </script>
 </body>
 </html>
